@@ -1,0 +1,17 @@
+User.objects.create(first_name="elmo", last_name="sesame", email_address="elmo@sesame.com", age=“20")
+User.objects.create(first_name="oscar", last_name="sesame", email_address="oscar@sesame.com", age=“17")
+User.objects.create(first_name="cookie monster", last_name="sesame", email_address="cookie@sesame.com", age="21")
+
+User.objects.all()
+User.objects.last()
+User.objects.first()
+
+a=User.objects.get(id=3)
+>>> a.last_name="pancakes"
+>>> a.save()
+
+a=User.objects.get(id=2)
+a.delete()
+
+User.objects.all().order_by(“first_name”)
+User.objects.all().order_by(“-first_name”)
