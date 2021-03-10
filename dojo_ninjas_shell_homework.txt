@@ -1,0 +1,44 @@
+from dojo_ninjas_app.models import *
+dojo.objects.create(name=“”, city=“”, state=“”)
+dojo.objects.create(name=“”, city=“”, state=“”) dojo.objects.create(name=“”, city=“”, state=“”)
+
+a=dojo.objects.get(id=1)
+b=dojo.objects.get(id=2)
+c=dojo.objects.get(id=3)
+
+a.delete()
+b.delete()
+c.delete()
+
+dojo.objects.create(name=“”, city=“”, state=“”)
+dojo.objects.create(name=“”, city=“”, state=“”) dojo.objects.create(name=“”, city=“”, state=“”)
+
+a=dojo.objects.get(id=4)
+b=dojo.objects.get(id=5)
+c=dojo.objects.get(id=6)
+
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=a)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=a)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=a)
+
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=b)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=b)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=b)
+
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=c)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=c)
+ninjas.objects.create(first_name=“”, last_name=“”, dojo=c)
+
+a.ninjas.values()
+b=dojo.objects.last()
+b.ninjas.values()
+c=ninjas.objects.last()
+c.dojo.name
+c.dojo.city
+c.dojo.state
+c.dojo.desc
+
+desc = models.TextField(default=“learning facilities for front and back end programming”)
+
+dojo.objects.create(name=“”, city=“”, state=“”, desc=“”)
+
