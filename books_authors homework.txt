@@ -1,0 +1,69 @@
+>>> Book.objects.create(title="C Sharp")
+<Book: Book object (1)>
+>>> Book.objects.create(title="Java")
+<Book: Book object (2)>
+>>> Book.objects.create(title="Python")
+<Book: Book object (3)>
+>>> Book.objects.create(title="PHP")
+<Book: Book object (4)>
+>>> Book.objects.create(title="Ruby")
+<Book: Book object (5)>
+>>> Author.objects.create(first_name="Jane", last_name="Austen")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name="Emily", last_name="Dickinson")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+<Author: Author object (3)>
+>>> Author.objects.create(first_name="William", last_name="Shakespeare")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name="Tzu", last_name="Lao")
+<Author: Author object (5)>
+]
+>>> a=Book.objects.get(id=1)
+>>> a.title=("C#")
+>>> a.save()
+>>> Book.objects.all().values()
+
+>>> a=Author.objects.get(id=4)
+>>> a.first_name=("Bill")
+>>> a.save()
+>>> Author.objects.all().values()
+
+>>> a=Author.objects.get(id=1)
+>>> b=Book.objects.get(id=1)
+>>> c=Book.objects.get(id=2)
+>>> a.books.add(b)
+>>> a.books.add(c)
+>>> Book.objects.all().values()
+>>> d=Book.objects.get(id=3)
+>>> e=Author.objects.get(id=2)
+>>> e.books.add(b)
+>>> e.books.add(c)
+>>> e.books.add(d)
+>>> e.books.all().values()
+
+>>> f=Book.objects.get(id=4)
+>>> fyodor=Author.objects.get(id=3)
+>>> fyodor.books.add(b)
+>>> fyodor.books.add(c)
+>>> fyodor.books.add(d)
+>>> fyodor.books.add(f)
+>>> fifthbook=Book.objects.get(id=5)
+>>> Shakes=Author.objects.get(id=4)
+>>> Shakes.books.add(b)
+>>> Shakes.books.add(c)
+>>> Shakes.books.add(d)
+>>> Shakes.books.add(f)
+>>> Shakes.books.add(fifthbook)
+>>> d.authors.all().values()
+>>> d.authors.all().values()
+>>> d.authors.remove(e)
+>>> d.authors.all().values()
+
+>>> c.authors.all().values()
+>>> laotzu=Author.objects.get(id=5)
+>>> c.authors.add(laotzu)
+>>> c.authors.all().values()
+
+>>> fyodor.books.all().values()
+>>> fifthbook.authors.all().values()
