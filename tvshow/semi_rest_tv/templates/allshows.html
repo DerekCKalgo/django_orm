@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>all shows</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>All Shows</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+            {% for show in all_shows %}
+            <tr>
+                <th>{{show.title}}</th>
+                <th>{{show.network}}</th>
+                <th>{{show.release_date}}</th>
+                <th><a href="show/{{show.id}}">Show</a><a href="edit/{{show.id}}">Edit</a><a href="delete/{{show.id}}">Delete</a></th>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/shows">Add a tv show</a>
+    </body>
+</html>

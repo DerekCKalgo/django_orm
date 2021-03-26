@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>This show</title>
+    </head>
+    <body>
+        <h1>TV Show</h1>
+        <form action="/shows/editdata/{{show.id}}", method="POST">
+            {% csrf_token %}
+        <p>Title: <input type="text" name="title" placeholder="{{show.title}}"></p>
+        <p>Network: <input type="text" name="network" placeholder="{{show.network}}"></p>
+        <p>Release Date: <input type="date" name="release" placeholder="{{show.release_date}}"></p>
+        <p>Description: <input type="text" name="desc" placeholder="{{show.desc}}"></p>
+        <input type="submit" value="update">
+        </form>
+    </body>
+</html>

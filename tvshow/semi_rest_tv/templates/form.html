@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Semi Restful TV Show</title>
+    </head>
+    <body>
+        <h1>Add a New Show</h1>
+    </body>
+    <form action="/shows", method="POST">
+        {% csrf_token %}
+        <p>Title<input type="text" name="title"></p>
+        <p>Network<input type="text" name="network"></p>
+        <p>Release Date<input type="date" name="release"></p>
+        <p>Description<input type="text" name="desc"></p>
+        <input type="submit" value="Create">
+    </form>
+</html>
