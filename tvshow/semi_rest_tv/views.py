@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages
+
 from .models import *
 
 def index(request):
-    if request.method == "GET":
-        return render(request, "form.html")
+    return render(request, "form.html")
+
+def submit(request):
+    errors=Show.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+            return redirect('/shows')
     else:
-        print("Works!")
         a=Show.objects.create(title=request.POST['title'], network=request.POST['network'], release_date=request.POST['release'], desc=request.POST['desc'])
         print(a.id)
+        messages.success(request, "successfully added")
         return redirect('/shows/all')
 
 def allshows(request):
@@ -37,10 +45,19 @@ def delete(request, show_id):
 
 def editdata(request, show_id):
     print("in editing database")
-    thisshow=Show.objects.get(id=show_id)
-    thisshow.title=request.POST['title']
-    thisshow.network=request.POST['network']
-    thisshow.release_date=request.POST['release']
-    thisshow.desc=request.POST['desc']
-    thisshow.save()
-    return redirect('/shows/all')
+    errors=Show.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+            context={
+                'show': Show.objects.get(id=show_id)
+            }
+            return render(request, 'editshow.html', context)
+    else:
+        thisshow=Show.objects.get(id=show_id)
+        thisshow.title=request.POST['title']
+        thisshow.network=request.POST['network']
+        thisshow.release_date=request.POST['release']
+        thisshow.desc=request.POST['desc']
+        thisshow.save()
+        return redirect('/shows/all')
