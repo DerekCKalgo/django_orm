@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Add a new course</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li> {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/submit", method="POST">
+            {% csrf_token %}
+            <p>Name:<input type="text" name="name"></p>
+            <p>Description:<input type="text" name="desc"></p>
+            <input type="submit" value="Add">
+        </form>
+        <h1>Courses</h1>
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for course in all_course %}
+            <tr>
+                <th>{{course.name}}</th>
+                <th>{{course.description}}</th>
+                <th>{{course.created_at}}</th>
+                <th><a href="delete/{{course.id}}">Remove</a></th>
+            </tr>
+            {% endfor %}
+    </body>
+</html>
