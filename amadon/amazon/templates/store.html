@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Amadon Store!</h1>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <th>Dojo Tshirt</th>
+                <th>$19.99</th>
+                <th>
+                    <form action="/purchase", method="POST">
+                        {% csrf_token %}
+                        <select name="quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <input type="hidden" name="product_id" value="1015">
+                        <button type="submit">Buy!</button>                   
+                    </form>
+                </th>
+            </tr>
+            <tr>
+                <th>Dojo Sweater</th>
+                <th>$29.99</th>
+                <th>
+                    <form action="/purchase", method="POST">
+                        {% csrf_token %}
+                        <select name="quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <input type="hidden" name="product_id" value="1016">
+                        <button type="submit">Buy!</button>
+                    </form>
+                </th>
+            </tr>
+        </table>
+    </body>
+</html>
