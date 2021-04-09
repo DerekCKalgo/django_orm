@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            CodingDojo Wall
+        </title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h1>Post a message</h1>
+        <form action="/message"  method="POST">
+            {% csrf_token %}
+            <input type="text" style="min-height: 200px; width: 400px;" name="message">
+            <input type="submit" value="Post a message">
+        </form>
+        {% for message in usermessages %}
+        <p>{{message.user.first_name}}{{message.user.last_name}}{{message.created_at}}</p>
+        <p>{{message.message}}</p>   
+        <form action="/comment/{{message.id}}"  method="POST">
+            {% csrf_token %}
+            <input type="text" style="min-height: 50px; width: 100px;" name="comment">
+            <input type="submit" value="Post a comment">
+        </form>
+        {% for comment in message.comments.all %}
+        <p>{{comment.comment}}</p>
+        {% endfor %}
+        {% endfor %}
+    </body>
+</html>
